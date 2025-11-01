@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Block Builder - Admin Portal
 
-## Getting Started
+Панель администратора для управления лицензионными ключами Block Builder.
 
-First, run the development server:
+## 🚀 Быстрый старт
 
 ```bash
+# 1. Установите зависимости
+npm install
+
+# 2. Создайте файл с переменными окружения
+copy env.local.example .env.local
+
+# 3. Запустите сервер
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Приложение запустится на **http://localhost:3012**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Конфигурация
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Отредактируйте `.env.local`:
 
-## Learn More
+```env
+NEXT_PUBLIC_API_URL=https://api.blockbuilder
+NEXT_PUBLIC_ADMIN_SECRET=your-admin-secret-key
+PORT=3012
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Требования
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **server-bb** должен быть запущен и доступен по адресу https://api.blockbuilder
+- Для локальной разработки добавьте запись в hosts: `127.0.0.1 api.blockbuilder`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📋 Возможности
 
-## Deploy on Vercel
+- ✅ Просмотр всех лицензионных ключей
+- ✅ Создание новых ключей
+- ✅ Деактивация ключей
+- ✅ Статистика использования
+- ✅ Поиск по ключам, email, доменам
+- ✅ Фильтрация по типу и статусу
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎯 Использование
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Откройте http://localhost:3012
+2. Просмотрите статистику на дашборде
+3. Создайте новый ключ через кнопку "+ Создать ключ"
+4. Управляйте существующими ключами через таблицу

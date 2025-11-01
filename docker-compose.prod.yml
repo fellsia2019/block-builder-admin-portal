@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  admin-portal:
+    image: block-builder-admin-portal:latest
+    container_name: bb-admin-portal-prod
+    networks:
+      - bb-shared-network:
+          aliases:
+            - admin-portal
+    environment:
+      NODE_ENV: production
+      PORT: 3011
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.block-builder.com}
+      NEXT_PUBLIC_ADMIN_SECRET: ${NEXT_PUBLIC_ADMIN_SECRET}
+    expose:
+      - "3011"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3011/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+networks:
+  bb-shared-network:
+    name: bb-shared-network
+    external: true
+    driver: bridge
+
