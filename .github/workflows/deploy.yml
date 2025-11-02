@@ -53,6 +53,20 @@ jobs:
           
           chmod -R 755 deploy-temp
 
+      - name: Create directory on server
+        run: |
+          echo "${{ secrets.VDS_SSH_KEY }}" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+          
+          ssh -o StrictHostKeyChecking=no \
+              -o UserKnownHostsFile=/dev/null \
+              -p ${{ secrets.VDS_SSH_PORT || 22 }} \
+              -i /tmp/deploy_key \
+              ${{ secrets.VDS_USER }}@${{ secrets.VDS_HOST }} \
+              "sudo mkdir -p /opt/admin-portal && sudo chown ${{ secrets.VDS_USER }}:${{ secrets.VDS_USER }} /opt/admin-portal"
+          
+          rm -f /tmp/deploy_key
+
       - name: Copy files to server
         uses: appleboy/scp-action@v0.1.7
         with:
