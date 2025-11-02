@@ -5,13 +5,11 @@ services:
     image: block-builder-admin-portal:latest
     container_name: bb-admin-portal-prod
     networks:
-      - bb-shared-network:
-          aliases:
-            - admin-portal
+      - bb-shared-network
     environment:
       NODE_ENV: production
       PORT: 3011
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.block-builder.com}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.block-builder.ru}
       NEXT_PUBLIC_ADMIN_SECRET: ${NEXT_PUBLIC_ADMIN_SECRET}
     expose:
       - "3011"
