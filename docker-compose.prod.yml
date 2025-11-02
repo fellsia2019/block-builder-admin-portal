@@ -4,6 +4,8 @@ services:
   admin-portal:
     image: block-builder-admin-portal:latest
     container_name: bb-admin-portal-prod
+    env_file:
+      - .env
     networks:
       - bb-shared-network
     environment:
@@ -11,6 +13,9 @@ services:
       PORT: 3011
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.block-builder.ru}
       NEXT_PUBLIC_ADMIN_SECRET: ${NEXT_PUBLIC_ADMIN_SECRET}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      AUTH_TOKEN: ${AUTH_TOKEN:-admin-token-123}
     expose:
       - "3011"
     restart: unless-stopped
