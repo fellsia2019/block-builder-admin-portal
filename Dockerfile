@@ -18,6 +18,10 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Build Next.js application
+# Set build-time environment variables (NEXT_PUBLIC_* variables are embedded at build time)
+ARG NEXT_PUBLIC_API_URL=https://api.block-builder.ru
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
 RUN npm run build
 
 # Stage 3: Runner

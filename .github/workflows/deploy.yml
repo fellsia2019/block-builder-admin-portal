@@ -22,7 +22,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t block-builder-admin-portal:${{ github.sha }} -t block-builder-admin-portal:latest -f Dockerfile .
+          docker build \
+            --build-arg NEXT_PUBLIC_API_URL=https://api.block-builder.ru \
+            -t block-builder-admin-portal:${{ github.sha }} \
+            -t block-builder-admin-portal:latest \
+            -f Dockerfile .
 
       - name: Save Docker image to tar
         run: |
