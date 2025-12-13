@@ -16,6 +16,7 @@ export async function POST(request: NextRequest) {
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
         maxAge: 60 * 60 * 24 * 7,
+        path: '/',
       });
 
       return NextResponse.json({ success: true });
@@ -26,8 +27,9 @@ export async function POST(request: NextRequest) {
       { status: 401 }
     );
   } catch (error) {
+    console.error('Login error:', error);
     return NextResponse.json(
-      { error: 'Ошибка сервера' },
+      { error: 'Ошибка сервера', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }

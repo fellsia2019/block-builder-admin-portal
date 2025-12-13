@@ -21,7 +21,9 @@ export function middleware(request: NextRequest) {
 
   if (!token || token.value !== AUTH_TOKEN) {
     const loginUrl = new URL('/login', request.url);
-    loginUrl.searchParams.set('redirect', pathname);
+    // Безопасно кодируем pathname для использования в query параметре
+    const safePathname = encodeURIComponent(pathname);
+    loginUrl.searchParams.set('redirect', safePathname);
     return NextResponse.redirect(loginUrl);
   }
 
