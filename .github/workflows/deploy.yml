@@ -143,9 +143,12 @@ jobs:
             # Create shared network if not exists
             docker network create bb-shared-network || true
             
-            # Stop existing containers
+            # Stop and remove existing containers
             echo "🛑 Stopping existing containers..."
             $DOCKER_COMPOSE_CMD -f docker-compose.prod.yml down || true
+            
+            # Remove container by name if exists (in case it wasn't managed by compose)
+            docker rm -f bb-admin-portal-prod 2>/dev/null || true
             
             # Start services
             echo "🚀 Starting services..."
