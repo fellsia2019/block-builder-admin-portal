@@ -11,7 +11,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3011
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.block-builder.ru}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.deep-bb.ru}
       NEXT_PUBLIC_ADMIN_SECRET: ${NEXT_PUBLIC_ADMIN_SECRET}
       ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
