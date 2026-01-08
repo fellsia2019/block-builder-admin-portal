@@ -1,8 +1,8 @@
 import type { License, LicenseStats, CreateLicenseRequest } from '@/types/license';
 
-// Для локальной разработки используем http://localhost:3010 напрямую, для production - https://api.deep-bb.ru
+// Для локальной разработки используем http://localhost:3010 напрямую, для production - https://api.block-builder.ru
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 
-  (process.env.NODE_ENV === 'development' ? 'http://localhost:3010' : 'https://api.deep-bb.ru');
+  (process.env.NODE_ENV === 'development' ? 'http://localhost:3010' : 'https://api.block-builder.ru');
 
 export class LicenseAPI {
   private baseUrl: string;
